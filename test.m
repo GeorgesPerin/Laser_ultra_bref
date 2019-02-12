@@ -2,13 +2,13 @@ close all
 clear all
 
 [~,Upas]=hme_ssfm2();
-[t,Uact]=Mod_lock_actif();
-U1=abs(Upas(end,:)).^2;
-U2=abs(Uact(end,:)).^2;
-plot(t,U1)
+[t,~,Uact]=Mod_lock_actif();
+U1=(Upas(end,:));
+U2=(Uact(end,:));
+plot(t,abs(U1).^2)
 hold on
-plot(t,U2,'-r')
-legend('SSF classque')
+plot(t,abs(U2).^2,'-r')
+legend('PAssif','Actif')
 xlabel('temps')
 ylabel('Puissance')
 
@@ -19,3 +19,4 @@ fprintf(fid,'%f %f',U1);
 fprintf(fid,'\n');
 fprintf(fid,'%f %f',U2);
 fclose(fid)
+
